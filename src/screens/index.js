@@ -1,21 +1,27 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Feed from "./Feed";
-import MyNotes from "./MyNotes";
-import Favorites from "./Favorites";
+
+import FeedStackScreen from "./stacks/FeedStackScreen";
+import MyNotesStackScreen from "./stacks/MyNotesStackScreen";
+import FavoriteStackScreen from "./stacks/FavoriteStackScreen";
+import ProfileStackScreen from "./stacks/ProfileStackScreen";
+import MyTabBar from "../components/TabBar/MyTabBar";
 
 const Tab = createBottomTabNavigator();
-
-export default AppNavigation = () => {
+const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Feed" component={Feed} />
-        <Tab.Screen name="MyNotes" component={MyNotes} />
-        <Tab.Screen name="Favorites" component={Favorites} />
+      <Tab.Navigator
+        screenOptions={{ headerShown: false }}
+        tabBar={(props) => <MyTabBar {...props} />}
+      >
+        <Tab.Screen name="FeedStack" component={FeedStackScreen} />
+        <Tab.Screen name="MyNotesStack" component={MyNotesStackScreen} />
+        <Tab.Screen name="FavoritesStack" component={FavoriteStackScreen} />
+        <Tab.Screen name="Profile" component={ProfileStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 };
+export default AppNavigation;
