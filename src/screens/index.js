@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -35,7 +35,7 @@ const AppNavigation = () => {
         </NavigationContainer>
       ) : (
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="AuthLoading" component={AuthLoading} />
             <Stack.Screen name="SignIn" component={SignIn} />
             <Stack.Screen name="Registration" component={Registration} />

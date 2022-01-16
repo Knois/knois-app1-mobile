@@ -1,26 +1,39 @@
-import React from "react";
-import { View, Button } from "react-native";
+import React, { useContext } from "react";
+import { View, Text } from "react-native";
 import * as SecureStore from "expo-secure-store";
+import { useMutation } from "@apollo/client";
+
+import SighInForm from "../components/SighInForm";
+import LoadingIndicator from "../components/LoadingIndicator";
+import { AuthContext } from "../AuthContext";
+import { SIGNIN_USER } from "../API/Mutation";
 
 const SignIn = ({ navigation }) => {
-  const setToken = () => {
-    SecureStore.setItemAsync("token", "123123");
+  const { setAuth } = useContext(AuthContext);
+
+  const saveTokenToStore = (token) => {
+    SecureStore.setItemAsync("token", token).then(setAuth(true));
   };
 
-  const checkLoginState = async () => {
-    const userToken = await SecureStore.getItemAsync("token");
-    console.log("Token in SecureStore is:");
-    console.log(userToken);
-  };
+  const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+    onCompleted: (data) => {
+      saveTokenToStore(data.signIn);
+    },
+  });
+
+  if (loading) return <LoadingIndicator />;
+
+  if (error)
+    return (
+      <>
+        <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+        <SighInForm action={signIn} formType="signIn" navigation={navigation} />
+      </>
+    );
 
   return (
     <View>
-      <Button title="set token" onPress={setToken} />
-      <Button
-        title="check token from SecureStore"
-        style={{ backgroundColor: "red", width: 100, height: 100, margin: 10 }}
-        onPress={checkLoginState}
-      />
+      <SighInForm action={signIn} formType="signIn" navigation={navigation} />
     </View>
   );
 };

@@ -1,12 +1,12 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const Profile = () => {
+const NoteFeedItem = ({ item }) => {
   const navigation = useNavigation();
   return (
     <>
-      <Text>Profile page</Text>
+      <Text style={{ padding: 30 }}>{item.content}</Text>
       <TouchableOpacity
         style={{
           width: 50,
@@ -15,10 +15,14 @@ const Profile = () => {
           margin: 5,
           alignSelf: "center",
         }}
-        onPress={() => navigation.navigate("Settings", {})}
+        onPress={() =>
+          navigation.navigate("NoteScreen", {
+            id: item.id,
+          })
+        }
       />
     </>
   );
 };
 
-export default Profile;
+export default NoteFeedItem;

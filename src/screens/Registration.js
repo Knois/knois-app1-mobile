@@ -1,24 +1,41 @@
 import React, { useContext } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
+import * as SecureStore from "expo-secure-store";
+import { useMutation } from "@apollo/client";
 
+import SighInForm from "../components/SighInForm";
+import LoadingIndicator from "../components/LoadingIndicator";
+import { REGISTRATION_USER } from "../API/Mutation";
 import { AuthContext } from "../AuthContext";
 
 const Registration = ({ navigation }) => {
   const { setAuth } = useContext(AuthContext);
 
-  const signIn = () => {
-    setAuth(true);
+  const saveTokenToStore = (token) => {
+    SecureStore.setItemAsync("token", token).then(setAuth(true));
   };
+
+  const [signUp, { loading, error }] = useMutation(REGISTRATION_USER, {
+    onCompleted: (data) => {
+      saveTokenToStore(data.signUp);
+    },
+  });
+
+  if (loading) return <LoadingIndicator />;
+
+  if (error)
+    return (
+      <>
+        <Text style={{ padding: 30, alignSelf: "center" }}>
+          Error registration!
+        </Text>
+        <SighInForm action={signUp} formType="signUp" navigation={navigation} />
+      </>
+    );
+
   return (
     <View>
-      <Text>regawwwwwwwwwwwwwwwwwwwwwwwwdsssssssss</Text>
-      <Text>regawwwwwwwwwwwwwwwwwwwwwwwwdsssssssss</Text>
-      <Text>regawwwwwwwwwwwwwwwwwwwwwwwwdsssssssss</Text>
-      <Button
-        title="1"
-        style={{ backgroundColor: "red", width: 100, height: 100 }}
-        onPress={signIn}
-      />
+      <SighInForm action={signUp} formType="signUp" navigation={navigation} />
     </View>
   );
 };
