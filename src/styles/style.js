@@ -8,5 +8,11 @@ const style = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  tabBar: {
+    flexDirection: "row",
+    backgroundColor: "#F0D0D0",
+    height: 70,
+    alignSelf: "center",
+  },
 });
 export default style;

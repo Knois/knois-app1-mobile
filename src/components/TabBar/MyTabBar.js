@@ -3,18 +3,11 @@ import { TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import style from "../../styles/style";
 
 const MyTabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        backgroundColor: "#F0D0D0",
-        height: 70,
-        border: 30,
-        alignSelf: "center",
-      }}
-    >
+    <View style={style.tabBar}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -59,6 +52,7 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
               alignSelf: "center",
               alignItems: "center",
             }}
+            key={index}
           >
             {index == 0 ? (
               <Ionicons name="home" size={40} color={isFocusedTab} />
