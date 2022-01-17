@@ -6,23 +6,24 @@ const NoteFeedItem = ({ item }) => {
   const navigation = useNavigation();
   return (
     <>
-      <Text style={{ padding: 30 }}>{item.content}</Text>
-      <TouchableOpacity
-        style={{
-          width: 50,
-          height: 50,
-          backgroundColor: "#F0D0D0",
-          margin: 5,
-          alignSelf: "center",
-        }}
-        onPress={() =>
-          navigation.navigate("NoteScreen", {
-            id: item.id,
-          })
-        }
-      />
+      <TouchableOpacity></TouchableOpacity>
     </>
   );
 };
 
 export default NoteFeedItem;
+
+/*<TouchableOpacity
+style={{
+  width: 50,
+  height: 50,
+  backgroundColor: "#F0D0D0",
+  margin: 5,
+  alignSelf: "center",
+}}
+onPress={() =>
+  navigation.navigate("NoteScreen", {
+    id: item.id,
+  })
+}
+/>*/

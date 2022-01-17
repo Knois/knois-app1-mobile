@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { useMutation } from "@apollo/client";

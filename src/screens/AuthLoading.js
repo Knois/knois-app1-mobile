@@ -9,7 +9,12 @@ const AuthLoading = ({ navigation }) => {
 
   const checkLoginState = async () => {
     const userToken = await SecureStore.getItemAsync("token");
-    userToken ? setAuth(true) : navigation.navigate("SignIn");
+    userToken
+      ? setAuth(true)
+      : navigation.reset({
+          index: 1,
+          routes: [{ name: "SignIn" }],
+        });
   };
 
   useEffect(() => {

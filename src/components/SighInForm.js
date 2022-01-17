@@ -51,11 +51,25 @@ const SighInForm = ({ action, navigation, formType }) => {
         style={{ borderWidth: 0.2, padding: 10, marginBottom: 20 }}
       />
       {formType !== "signUp" ? (
-        <TouchableOpacity onPress={() => navigation.navigate("Registration")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.reset({
+              index: 1,
+              routes: [{ name: "Registration" }],
+            })
+          }
+        >
           <Text>Need an account? Register</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.reset({
+              index: 1,
+              routes: [{ name: "SignIn" }],
+            })
+          }
+        >
           <Text>Have an account? Sign in</Text>
         </TouchableOpacity>
       )}
