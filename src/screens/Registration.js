@@ -25,16 +25,16 @@ const Registration = ({ navigation }) => {
 
   if (error)
     return (
-      <>
+      <View style={{ flex: 1, backgroundColor: "#ede0f7" }}>
         <Text style={{ padding: 30, alignSelf: "center" }}>
           Error registration!
         </Text>
         <SighInForm action={signUp} formType="signUp" navigation={navigation} />
-      </>
+      </View>
     );
 
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: "#ede0f7" }}>
       <SighInForm action={signUp} formType="signUp" navigation={navigation} />
     </View>
   );

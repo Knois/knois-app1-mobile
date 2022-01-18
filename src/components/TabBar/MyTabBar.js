@@ -9,9 +9,11 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
     <View
       style={{
         flexDirection: "row",
-        backgroundColor: "#F0D0D0",
+        backgroundColor: "red",
         height: 70,
         alignSelf: "center",
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
       }}
     >
       {state.routes.map((route, index) => {

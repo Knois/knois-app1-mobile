@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useContext } from "react";
+import { View, Text, KeyboardAvoidingView } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { useMutation } from "@apollo/client";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import SighInForm from "../components/SighInForm";
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -25,16 +26,24 @@ const SignIn = ({ navigation }) => {
 
   if (error)
     return (
-      <>
+      <KeyboardAwareScrollView
+        style={{ height: 700, backgroundColor: "#ede0f7" }}
+      >
         <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
         <SighInForm action={signIn} formType="signIn" navigation={navigation} />
-      </>
+      </KeyboardAwareScrollView>
     );
 
   return (
-    <View>
+    <KeyboardAwareScrollView
+      style={{ height: 700, backgroundColor: "#ede0f7" }}
+    >
+      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
       <SighInForm action={signIn} formType="signIn" navigation={navigation} />
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 

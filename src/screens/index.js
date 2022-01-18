@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
   const { isAuth } = useContext(AuthContext);
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ height: 700, backgroundColor: "#ede0f7" }}>
       {isAuth ? (
         <NavigationContainer>
           <Tab.Navigator
