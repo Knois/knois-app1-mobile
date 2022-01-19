@@ -19,7 +19,7 @@ const AuthLoading = ({ navigation }) => {
 
   useEffect(() => {
     checkLoginState();
-  });
+  }, []);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { MAIN, SECONDARY_DARK } from "./constants";
+import { MAIN, SECONDARY_DARK, WHITE } from "./constants";
 
 const style = StyleSheet.create({
   container: { flex: 1, backgroundColor: MAIN },
@@ -10,7 +10,7 @@ const style = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 10,
     borderRadius: 20,
-    backgroundColor: "#ffffff",
+    backgroundColor: WHITE,
     position: "relative",
   },
   updatedAtContainer: {

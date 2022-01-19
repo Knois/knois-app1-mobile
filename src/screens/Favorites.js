@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import { useQuery } from "@apollo/client";
 
@@ -6,10 +6,25 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorQuery from "../components/ErrorQuery";
 import NoteFeed from "../components/NoteFeed";
 import { GET_MY_FAVORITES } from "../API/Query";
+import RefreshButton from "../components/RefreshButton";
 
-const Favorites = () => {
-  const { loading, error, data } = useQuery(GET_MY_FAVORITES);
+const Favorites = ({ navigation }) => {
+  const { loading, error, data, refetch, networkStatus } = useQuery(
+    GET_MY_FAVORITES,
+    {
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: "cache-first",
+    }
+  );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <RefreshButton action={refetch} />,
+    });
+  }, []);
+
   if (loading) return <LoadingIndicator />;
+  if (networkStatus === networkStatus.refetch) return <LoadingIndicator />;
   if (error) return <ErrorQuery error={error} />;
   if (data.me.favorites.length !== 0) {
     return (

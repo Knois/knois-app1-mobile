@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 
 import { useQuery } from "@apollo/client";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { GET_NOTE } from "../API/Query";
 
-const NoteScreen = ({ route }) => {
-  const { id } = route.params;
+const NoteScreen = ({ route, navigation }) => {
+  const { id, anons } = route.params;
 
-  const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
+  const { loading, error, data } = useQuery(GET_NOTE, {
+    variables: { id },
+    fetchPolicy: "cache-and-network",
+  });
+
+  useEffect(() => {
+    navigation.setOptions({ title: anons });
+  }, []);
 
   if (loading) return <LoadingIndicator />;
   // В случае сбоя выдаем пользователю сообщение об ошибке

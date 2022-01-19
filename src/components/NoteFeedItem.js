@@ -14,6 +14,7 @@ const NoteFeedItem = ({ item }) => {
         onPress={() =>
           navigation.navigate("NoteScreen", {
             id: item.id,
+            anons: item.anons,
           })
         }
       >

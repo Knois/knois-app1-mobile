@@ -18,7 +18,7 @@ const UpdatedAt = ({ updatedAt }) => {
         <Text style={{ fontSize: 8 }}>Last update: </Text>
 
         <Text style={{ fontSize: 8 }}>
-          {format(new Date(updatedAt), "MMM do yyyy")}
+          {format(new Date(updatedAt), "dd MMM yyyy, HH:mm ")}
         </Text>
       </View>
     </View>

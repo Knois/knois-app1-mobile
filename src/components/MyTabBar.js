@@ -4,6 +4,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import style from "../styles/style";
+import { SECONDARY, WHITE } from "../styles/constants";
 
 const MyTabBar = ({ state, descriptors, navigation }) => {
   return (
@@ -37,7 +38,7 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
           });
         };
 
-        let isFocusedTab = isFocused ? "black" : "white";
+        let isFocusedTab = isFocused ? WHITE : SECONDARY;
 
         return (
           <TouchableOpacity
