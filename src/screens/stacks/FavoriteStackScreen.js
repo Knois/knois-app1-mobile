@@ -1,8 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import NoteScreen from "../NoteScreen";
 import Favorites from "../Favorites";
+import RefreshButton from "../../components/RefreshButton";
 
 const FavoriteStack = createNativeStackNavigator();
 const FavoriteStackScreen = () => {
@@ -11,7 +11,10 @@ const FavoriteStackScreen = () => {
       <FavoriteStack.Screen
         name="Favorites"
         component={Favorites}
-        options={{ title: "Избранное" }}
+        options={{
+          title: "Избранное",
+          headerRight: () => <RefreshButton />,
+        }}
       />
       <FavoriteStack.Screen name="NoteScreen" component={NoteScreen} />
     </FavoriteStack.Navigator>

@@ -1,7 +1,5 @@
 import React from "react";
-import { View } from "react-native";
 import { useQuery } from "@apollo/client";
-
 import LoadingIndicator from "../components/LoadingIndicator";
 import NoteFeed from "../components/NoteFeed";
 import { GET_NOTES } from "../API/Query";
@@ -15,9 +13,7 @@ const Feed = () => {
 
   return (
     <>
-      <View style={{ flex: 1 }}>
-        <NoteFeed notes={data.notes} />
-      </View>
+      <NoteFeed notes={data.notes} />
     </>
   );
 };

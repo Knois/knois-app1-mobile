@@ -24,24 +24,11 @@ const SignIn = ({ navigation }) => {
 
   if (loading) return <LoadingIndicator />;
 
-  if (error)
-    return (
-      <KeyboardAwareScrollView
-        style={{ height: 700, backgroundColor: "#ede0f7" }}
-      >
-        <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
-        <SighInForm action={signIn} formType="signIn" navigation={navigation} />
-      </KeyboardAwareScrollView>
-    );
-
   return (
-    <KeyboardAwareScrollView
-      style={{ height: 700, backgroundColor: "#ede0f7" }}
-    >
-      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
-      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
-      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
-      <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+    <KeyboardAwareScrollView style={{ backgroundColor: "#ede0f7" }}>
+      {error && (
+        <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+      )}
       <SighInForm action={signIn} formType="signIn" navigation={navigation} />
     </KeyboardAwareScrollView>
   );

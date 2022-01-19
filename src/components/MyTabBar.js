@@ -3,19 +3,11 @@ import { TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import style from "../styles/style";
 
 const MyTabBar = ({ state, descriptors, navigation }) => {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        backgroundColor: "red",
-        height: 70,
-        alignSelf: "center",
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-      }}
-    >
+    <View style={style.tabBarContainer}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -45,7 +37,7 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
           });
         };
 
-        let isFocusedTab = isFocused ? "green" : "black";
+        let isFocusedTab = isFocused ? "black" : "white";
 
         return (
           <TouchableOpacity

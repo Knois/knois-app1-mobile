@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { View, Text } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { useMutation } from "@apollo/client";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import SighInForm from "../components/SighInForm";
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -23,20 +24,13 @@ const Registration = ({ navigation }) => {
 
   if (loading) return <LoadingIndicator />;
 
-  if (error)
-    return (
-      <View style={{ flex: 1, backgroundColor: "#ede0f7" }}>
-        <Text style={{ padding: 30, alignSelf: "center" }}>
-          Error registration!
-        </Text>
-        <SighInForm action={signUp} formType="signUp" navigation={navigation} />
-      </View>
-    );
-
   return (
-    <View style={{ flex: 1, backgroundColor: "#ede0f7" }}>
+    <KeyboardAwareScrollView style={{ backgroundColor: "#ede0f7" }}>
+      {error && (
+        <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+      )}
       <SighInForm action={signUp} formType="signUp" navigation={navigation} />
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 

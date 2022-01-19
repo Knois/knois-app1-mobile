@@ -11,6 +11,7 @@ import {
 import { setContext } from "apollo-link-context";
 
 import { AuthProvider } from "./src/AuthContext";
+import { SECONDARY_DARK } from "./src/styles/constants";
 
 const uri = "http://knois-app1.herokuapp.com/api";
 const cache = new InMemoryCache();
@@ -32,7 +33,7 @@ export default App = () => {
     <ApolloProvider client={client}>
       <AuthProvider>
         <AppNavigation />
-        <StatusBar style="auto" />
+        <StatusBar style={SECONDARY_DARK} />
       </AuthProvider>
     </ApolloProvider>
   );

@@ -7,12 +7,14 @@ import FeedStackScreen from "./stacks/FeedStackScreen";
 import MyNotesStackScreen from "./stacks/MyNotesStackScreen";
 import FavoriteStackScreen from "./stacks/FavoriteStackScreen";
 import ProfileStackScreen from "./stacks/ProfileStackScreen";
-import MyTabBar from "../components/TabBar/MyTabBar";
+import MyTabBar from "../components/MyTabBar";
 import AuthLoading from "./AuthLoading";
 import Registration from "./Registration";
 import SignIn from "./SignIn";
 import { AuthContext } from "../AuthContext";
 import { View } from "react-native";
+import style from "../styles/style";
+import { theme } from "../styles/theme";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -20,9 +22,9 @@ const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
   const { isAuth } = useContext(AuthContext);
   return (
-    <View style={{ height: 700, backgroundColor: "#ede0f7" }}>
+    <View style={style.container}>
       {isAuth ? (
-        <NavigationContainer>
+        <NavigationContainer theme={theme}>
           <Tab.Navigator
             screenOptions={{ headerShown: false }}
             tabBar={(props) => <MyTabBar {...props} />}
