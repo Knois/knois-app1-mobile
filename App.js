@@ -33,7 +33,7 @@ export default App = () => {
     <ApolloProvider client={client}>
       <AuthProvider>
         <AppNavigation />
-        <StatusBar style={SECONDARY_DARK} />
+        <StatusBar style={"light"} />
       </AuthProvider>
     </ApolloProvider>
   );

@@ -17,7 +17,7 @@ const NoteFeedItem = ({ item }) => {
           })
         }
       >
-        <Text style={{ flex: 3, padding: 10 }}>{item.content}</Text>
+        <Text style={{ flex: 3, padding: 10 }}>{item.anons}</Text>
         <UpdatedAt updatedAt={item.updatedAt} />
         <FavoritesCount favoriteCount={item.favoriteCount} />
       </TouchableOpacity>

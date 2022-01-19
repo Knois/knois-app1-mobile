@@ -7,6 +7,7 @@ export const GET_NOTES = gql`
       createdAt
       updatedAt
       content
+      anons
       favoriteCount
       author {
         username
@@ -21,6 +22,7 @@ export const GET_NOTE = gql`
   query note($id: ID!) {
     note(id: $id) {
       id
+      anons
       createdAt
       updatedAt
       content
@@ -43,6 +45,7 @@ export const GET_MY_NOTES = gql`
         id
         createdAt
         updatedAt
+        anons
         content
         favoriteCount
         author {
@@ -61,6 +64,7 @@ export const GET_MY_FAVORITES = gql`
       id
       username
       favorites {
+        content
         id
         createdAt
         updatedAt
