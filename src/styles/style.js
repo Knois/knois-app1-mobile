@@ -40,8 +40,6 @@ const style = StyleSheet.create({
     backgroundColor: SECONDARY_DARK,
     height: 70,
     alignSelf: "center",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
   },
   signInFormText: {
     marginVertical: 10,
@@ -83,6 +81,7 @@ const style = StyleSheet.create({
     alignSelf: "center",
     color: SECONDARY_DARK,
   },
+  noteScreenTitle: { color: SECONDARY_DARK, fontSize: 30, fontWeight: "bold" },
 });
 
 export default style;

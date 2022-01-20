@@ -9,7 +9,7 @@ import RefreshButton from "../components/RefreshButton";
 const Feed = ({ navigation }) => {
   const { loading, error, data, refetch, networkStatus } = useQuery(GET_NOTES, {
     notifyOnNetworkStatusChange: true,
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "cache-first",
   });
 
   useEffect(() => {

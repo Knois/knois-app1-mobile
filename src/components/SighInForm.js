@@ -45,6 +45,7 @@ const SighInForm = ({ action, navigation, formType }) => {
         autoCapitalize="none"
         style={style.signInFormTextInput}
         maxLength={50}
+        keyboardType="email-address"
       />
       <Text style={style.signInFormText}>Password:</Text>
       <PasswordInput password={password} setPassword={setPassword} />

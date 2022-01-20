@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import style from "../styles/style";
 import { SECONDARY, WHITE } from "../styles/constants";
 
@@ -60,7 +60,7 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
             ) : index == 1 ? (
               <Ionicons name="document-text" size={40} color={isFocusedTab} />
             ) : index == 2 ? (
-              <MaterialIcons name="favorite" size={40} color={isFocusedTab} />
+              <AntDesign name="heart" size={35} color={isFocusedTab} />
             ) : (
               <FontAwesome name="user" size={40} color={isFocusedTab} />
             )}
