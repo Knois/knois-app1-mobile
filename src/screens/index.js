@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
 
 import FeedStackScreen from "./stacks/FeedStackScreen";
 import MyNotesStackScreen from "./stacks/MyNotesStackScreen";
@@ -34,6 +35,7 @@ const AppNavigation = () => {
             <Tab.Screen name="FavoritesStack" component={FavoriteStackScreen} />
             <Tab.Screen name="ProfileStack" component={ProfileStackScreen} />
           </Tab.Navigator>
+          <StatusBar style={"light"} />
         </NavigationContainer>
       ) : (
         <NavigationContainer>
@@ -42,6 +44,7 @@ const AppNavigation = () => {
             <Stack.Screen name="SignIn" component={SignIn} />
             <Stack.Screen name="Registration" component={Registration} />
           </Stack.Navigator>
+          <StatusBar style={"dark"} />
         </NavigationContainer>
       )}
     </View>

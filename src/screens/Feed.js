@@ -5,7 +5,6 @@ import NoteFeed from "../components/NoteFeed";
 import { GET_NOTES } from "../API/Query";
 import ErrorQuery from "../components/ErrorQuery";
 import RefreshButton from "../components/RefreshButton";
-import { Text } from "react-native";
 
 const Feed = ({ navigation }) => {
   const { loading, error, data, refetch, networkStatus } = useQuery(GET_NOTES, {

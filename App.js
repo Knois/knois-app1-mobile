@@ -1,5 +1,4 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 import AppNavigation from "./src/screens";
 import * as SecureStore from "expo-secure-store";
 import {
@@ -9,9 +8,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "apollo-link-context";
-
 import { AuthProvider } from "./src/AuthContext";
-import { SECONDARY_DARK } from "./src/styles/constants";
 
 const uri = "http://knois-app1.herokuapp.com/api";
 const cache = new InMemoryCache();
@@ -33,7 +30,6 @@ export default App = () => {
     <ApolloProvider client={client}>
       <AuthProvider>
         <AppNavigation />
-        <StatusBar style={"light"} />
       </AuthProvider>
     </ApolloProvider>
   );

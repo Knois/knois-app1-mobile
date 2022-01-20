@@ -8,6 +8,8 @@ import SighInForm from "../components/SighInForm";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { REGISTRATION_USER } from "../API/Mutation";
 import { AuthContext } from "../AuthContext";
+import { MAIN, SECONDARY_DARK } from "../styles/constants";
+import style from "../styles/style";
 
 const Registration = ({ navigation }) => {
   const { setAuth } = useContext(AuthContext);
@@ -25,13 +27,22 @@ const Registration = ({ navigation }) => {
   if (loading) return <LoadingIndicator />;
 
   return (
-    <KeyboardAwareScrollView style={{ backgroundColor: "#ede0f7" }}>
-      {error && (
-        <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
-      )}
-      <SighInForm action={signUp} formType="signUp" navigation={navigation} />
+    <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
+      <View style={{ padding: 30 }}>
+        <Text style={style.signInTitle}>Sign Up</Text>
+        {error && (
+          <Text style={{ color: SECONDARY_DARK, alignSelf: "center" }}>
+            Error sign up
+          </Text>
+        )}
+        <SighInForm action={signUp} formType="signUp" navigation={navigation} />
+      </View>
     </KeyboardAwareScrollView>
   );
 };
 
 export default Registration;
+
+/*{error && (
+        <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
+      )}*/

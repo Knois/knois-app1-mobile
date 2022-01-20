@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Button, TextInput } from "react-native";
+import { View, Text, TextInput } from "react-native";
+import style from "../styles/style";
+import PasswordInput from "./PasswordInput";
+import SignInButton from "./SignInButton";
+import SignInLink from "./SignInLink";
 
 const SighInForm = ({ action, navigation, formType }) => {
   const [email, setEmail] = useState("");
@@ -17,63 +21,35 @@ const SighInForm = ({ action, navigation, formType }) => {
   };
 
   return (
-    <View style={{ padding: 20 }}>
+    <View>
       {formType == "signUp" && (
         <>
-          <Text style={{ padding: 10, alignSelf: "center" }}>Username:</Text>
+          <Text style={style.signInFormText}>Username:</Text>
           <TextInput
             onChangeText={(text) => setUsername(text)}
-            valuse={username}
+            value={username}
             textContentType="username"
             autoComplete="username"
             autoCapitalize="none"
-            style={{ borderWidth: 0.2, padding: 10, marginBottom: 20 }}
+            style={style.signInFormTextInput}
+            maxLength={50}
           />
         </>
       )}
-      <Text style={{ padding: 10, alignSelf: "center" }}>Email:</Text>
+      <Text style={style.signInFormText}>Email:</Text>
       <TextInput
         onChangeText={(text) => setEmail(text)}
-        valuse={email}
-        autoFocus={true}
+        value={email}
         textContentType="emailAddress"
         autoComplete="email"
         autoCapitalize="none"
-        style={{ borderWidth: 0.2, padding: 10, marginBottom: 20 }}
+        style={style.signInFormTextInput}
+        maxLength={50}
       />
-      <Text style={{ padding: 10, alignSelf: "center" }}>Password:</Text>
-      <TextInput
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-        textContentType="password"
-        secureTextEntry={true}
-        autoCapitalize="none"
-        style={{ borderWidth: 0.2, padding: 10, marginBottom: 20 }}
-      />
-      {formType !== "signUp" ? (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.reset({
-              index: 1,
-              routes: [{ name: "Registration" }],
-            })
-          }
-        >
-          <Text>Need an account? Register</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.reset({
-              index: 1,
-              routes: [{ name: "SignIn" }],
-            })
-          }
-        >
-          <Text>Have an account? Sign in</Text>
-        </TouchableOpacity>
-      )}
-      <Button title="Ok" onPress={handleSubmit} />
+      <Text style={style.signInFormText}>Password:</Text>
+      <PasswordInput password={password} setPassword={setPassword} />
+      <SignInButton handleSubmit={handleSubmit} formType={formType} />
+      <SignInLink navigation={navigation} formType={formType} />
     </View>
   );
 };

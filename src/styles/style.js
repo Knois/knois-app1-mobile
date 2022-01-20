@@ -1,5 +1,11 @@
 import { StyleSheet } from "react-native";
-import { MAIN, SECONDARY_DARK, WHITE } from "./constants";
+import {
+  MAIN,
+  MAIN_LIGHT,
+  SECONDARY,
+  SECONDARY_DARK,
+  WHITE,
+} from "./constants";
 
 const style = StyleSheet.create({
   container: { flex: 1, backgroundColor: MAIN },
@@ -10,7 +16,7 @@ const style = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 10,
     borderRadius: 20,
-    backgroundColor: WHITE,
+    backgroundColor: MAIN_LIGHT,
     position: "relative",
   },
   updatedAtContainer: {
@@ -36,6 +42,46 @@ const style = StyleSheet.create({
     alignSelf: "center",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+  },
+  signInFormText: {
+    marginVertical: 10,
+    marginLeft: 10,
+    fontSize: 15,
+    color: SECONDARY_DARK,
+  },
+  signInFormTextInput: {
+    borderColor: SECONDARY_DARK,
+    borderWidth: 1,
+    padding: 15,
+    borderRadius: 20,
+    marginBottom: 10,
+    backgroundColor: MAIN_LIGHT,
+  },
+  signInFormPasswordInput: {
+    borderColor: SECONDARY_DARK,
+    borderWidth: 1,
+    padding: 15,
+    borderRadius: 20,
+    marginBottom: 10,
+    backgroundColor: MAIN_LIGHT,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  signInButton: {
+    marginVertical: 40,
+    padding: 20,
+    alignItems: "center",
+    backgroundColor: SECONDARY_DARK,
+    borderRadius: 20,
+  },
+  signInButtonText: { color: WHITE, fontWeight: "bold", fontSize: 15 },
+  signInTitle: {
+    marginTop: 40,
+    fontSize: 40,
+    marginBottom: 40,
+    alignSelf: "center",
+    color: SECONDARY_DARK,
   },
 });
 

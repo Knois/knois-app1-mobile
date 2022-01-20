@@ -10,7 +10,7 @@ const NoteScreen = ({ route, navigation }) => {
 
   const { loading, error, data } = useQuery(GET_NOTE, {
     variables: { id },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "cache-first",
   });
 
   useEffect(() => {
