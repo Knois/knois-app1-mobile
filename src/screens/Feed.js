@@ -24,7 +24,7 @@ const Feed = ({ navigation }) => {
 
   return (
     <>
-      <NoteFeed notes={data.notes} />
+      <NoteFeed notes={data.notes} refetch={refetch}/>
     </>
   );
 };

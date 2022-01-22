@@ -30,7 +30,7 @@ const Favorites = ({ navigation }) => {
     return (
       <>
         <View style={{ flex: 1 }}>
-          <NoteFeed notes={data.me.favorites} />
+          <NoteFeed notes={data.me.favorites} refetch={refetch}/>
         </View>
       </>
     );

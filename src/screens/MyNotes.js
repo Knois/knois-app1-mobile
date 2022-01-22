@@ -30,7 +30,7 @@ const MyNotes = ({ navigation }) => {
     return (
       <>
         <View style={{ flex: 1 }}>
-          <NoteFeed notes={data.me.notes} />
+          <NoteFeed notes={data.me.notes} refetch={refetch}/>
         </View>
       </>
     );
