@@ -7,6 +7,7 @@ import NoteFeed from "../components/NoteFeed";
 import { GET_MY_NOTES } from "../API/Query";
 import ErrorQuery from "../components/ErrorQuery";
 import RefreshButton from "../components/RefreshButton";
+import AddNoteButton from "../components/AddNoteButton";
 
 const MyNotes = ({ navigation }) => {
   const { loading, error, data, refetch, networkStatus } = useQuery(
@@ -19,7 +20,12 @@ const MyNotes = ({ navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => <RefreshButton action={refetch} />,
+      headerRight: () => (
+        <>
+          <AddNoteButton navigation={navigation} />
+          <RefreshButton action={refetch} />
+        </>
+      ),
     });
   }, []);
 
@@ -30,7 +36,7 @@ const MyNotes = ({ navigation }) => {
     return (
       <>
         <View style={{ flex: 1 }}>
-          <NoteFeed notes={data.me.notes} refetch={refetch}/>
+          <NoteFeed notes={data.me.notes} refetch={refetch} />
         </View>
       </>
     );

@@ -6,12 +6,7 @@ import { WHITE } from "../styles/constants";
 const RefreshButton = ({ action }) => {
   return (
     <>
-      <TouchableOpacity
-        style={{
-          alignSelf: "flex-end",
-        }}
-        onPress={() => action()}
-      >
+      <TouchableOpacity style={{}} onPress={() => action()}>
         <EvilIcons name="refresh" size={40} color={WHITE} />
       </TouchableOpacity>
     </>

@@ -8,11 +8,14 @@ import RefreshButton from "../components/RefreshButton";
 import { Feather } from "@expo/vector-icons";
 import { format } from "date-fns";
 import { SECONDARY_DARK } from "../styles/constants";
-import { AntDesign } from "@expo/vector-icons";
 import style from "../styles/style";
 
 const NoteScreen = ({ route, navigation }) => {
   const { id, anons } = route.params;
+
+  const toTitle = (anons) => {
+    return anons.substr(0, 20) + (anons.length > 20 ? "..." : "");
+  };
 
   const { loading, error, data, refetch, networkStatus } = useQuery(GET_NOTE, {
     variables: { id },
@@ -22,13 +25,12 @@ const NoteScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      title: anons,
+      title: toTitle(anons),
       headerRight: () => <RefreshButton action={refetch} />,
     });
   }, []);
 
   if (loading) return <LoadingIndicator />;
-
   if (networkStatus === networkStatus.refetch) return <LoadingIndicator />;
   if (error) return <ErrorQuery error={error} />;
   return (
@@ -43,10 +45,16 @@ const NoteScreen = ({ route, navigation }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          alignContent: "center",
           marginBottom: 70,
         }}
       >
-        <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignContent: "center",
+          }}
+        >
           <Feather name="user" size={24} color={SECONDARY_DARK} />
           <Text style={{ color: SECONDARY_DARK }}>
             {" "}
@@ -58,11 +66,11 @@ const NoteScreen = ({ route, navigation }) => {
             alignItems: "flex-end",
           }}
         >
-          <Text style={{ color: SECONDARY_DARK }}>
+          <Text style={{ color: SECONDARY_DARK, fontSize: 10 }}>
             Last update:{" "}
             {format(new Date(data.note.updatedAt), "HH:mm, dd.MM.yyyy ")}
           </Text>
-          <Text style={{ color: SECONDARY_DARK }}>
+          <Text style={{ color: SECONDARY_DARK, fontSize: 10 }}>
             Created at:{" "}
             {format(new Date(data.note.createdAt), "HH:mm, dd.MM.yyyy ")}
           </Text>
