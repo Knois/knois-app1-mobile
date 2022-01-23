@@ -5,7 +5,6 @@ import NoteFeed from "../components/NoteFeed";
 import { GET_NOTES } from "../API/Query";
 import ErrorQuery from "../components/ErrorQuery";
 import RefreshButton from "../components/RefreshButton";
-import AddNoteButton from "../components/AddNoteButton";
 import { View } from "react-native";
 
 const Feed = ({ navigation }) => {
@@ -16,14 +15,7 @@ const Feed = ({ navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <AddNoteButton navigation={navigation} />
-            <RefreshButton action={refetch} />
-          </View>
-        </>
-      ),
+      headerRight: () => <RefreshButton action={refetch} />,
     });
   }, []);
 

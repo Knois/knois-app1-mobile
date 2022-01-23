@@ -40,6 +40,9 @@ const style = StyleSheet.create({
     backgroundColor: SECONDARY_DARK,
     height: 70,
     alignSelf: "center",
+    width: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   signInFormText: {
     marginVertical: 10,

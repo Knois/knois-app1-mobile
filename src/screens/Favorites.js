@@ -7,7 +7,6 @@ import ErrorQuery from "../components/ErrorQuery";
 import NoteFeed from "../components/NoteFeed";
 import { GET_MY_FAVORITES } from "../API/Query";
 import RefreshButton from "../components/RefreshButton";
-import AddNoteButton from "../components/AddNoteButton";
 
 const Favorites = ({ navigation }) => {
   const { loading, error, data, refetch, networkStatus } = useQuery(
@@ -20,12 +19,7 @@ const Favorites = ({ navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => (
-        <>
-          <AddNoteButton navigation={navigation} />
-          <RefreshButton action={refetch} />
-        </>
-      ),
+      headerRight: () => <RefreshButton action={refetch} />,
     });
   }, []);
 

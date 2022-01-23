@@ -4,7 +4,7 @@ import FeedStackScreen from "./stacks/FeedStackScreen";
 import MyNotesStackScreen from "./stacks/MyNotesStackScreen";
 import FavoriteStackScreen from "./stacks/FavoriteStackScreen";
 import ProfileStackScreen from "./stacks/ProfileStackScreen";
-import MyTabBar from "../components/MyTabBar";
+import FooterBottomTabs from "../components/FooterBottomTabs";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,12 +12,12 @@ const BottomTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
-      tabBar={(props) => <MyTabBar {...props} />}
+      tabBar={(props) => <FooterBottomTabs {...props} />}
     >
-      <Tab.Screen name="FeedStack" component={FeedStackScreen} />
-      <Tab.Screen name="MyNotesStack" component={MyNotesStackScreen} />
-      <Tab.Screen name="FavoritesStack" component={FavoriteStackScreen} />
-      <Tab.Screen name="ProfileStack" component={ProfileStackScreen} />
+      <Tab.Screen name="FeedStackScreen" component={FeedStackScreen} />
+      <Tab.Screen name="FavoriteStackScreen" component={FavoriteStackScreen} />
+      <Tab.Screen name="MyNotesStackScreen" component={MyNotesStackScreen} />
+      <Tab.Screen name="ProfileStackScreen" component={ProfileStackScreen} />
     </Tab.Navigator>
   );
 };
