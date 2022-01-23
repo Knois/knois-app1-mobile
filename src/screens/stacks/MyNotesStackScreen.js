@@ -17,13 +17,6 @@ const MyNotesStackScreen = () => {
         options={{ title: "Мои заметки" }}
       />
       <MyNotesStack.Screen name="NoteScreen" component={NoteScreen} />
-      <MyNotesStack.Screen
-        name="AddNoteScreen"
-        component={AddNoteScreen}
-        options={{
-          title: "Добавление новости",
-        }}
-      />
     </MyNotesStack.Navigator>
   );
 };

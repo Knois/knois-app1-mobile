@@ -17,13 +17,6 @@ const FavoriteStackScreen = () => {
         }}
       />
       <FavoriteStack.Screen name="NoteScreen" component={NoteScreen} />
-      <FavoriteStack.Screen
-        name="AddNoteScreen"
-        component={AddNoteScreen}
-        options={{
-          title: "Добавление новости",
-        }}
-      />
     </FavoriteStack.Navigator>
   );
 };

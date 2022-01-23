@@ -16,14 +16,6 @@ const FeedStackScreen = () => {
         options={{ title: "Главная" }}
       />
       <FeedStack.Screen name="NoteScreen" component={NoteScreen} />
-
-      <FeedStack.Screen
-        name="AddNoteScreen"
-        component={AddNoteScreen}
-        options={{
-          title: "Добавление новости",
-        }}
-      />
     </FeedStack.Navigator>
   );
 };
