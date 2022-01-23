@@ -7,6 +7,7 @@ import ErrorQuery from "../components/ErrorQuery";
 import NoteFeed from "../components/NoteFeed";
 import { GET_MY_FAVORITES } from "../API/Query";
 import RefreshButton from "../components/RefreshButton";
+import { SECONDARY_DARK } from "../styles/constants";
 
 const Favorites = ({ navigation }) => {
   const { loading, error, data, refetch, networkStatus } = useQuery(
@@ -38,9 +39,33 @@ const Favorites = ({ navigation }) => {
     return (
       <>
         <View
-          style={{ alignSelf: "center", justifyContent: "center", flex: 1 }}
+          style={{
+            alignSelf: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
         >
-          <Text>Nothing to show! Add to favorites any note!</Text>
+          <Text
+            style={{
+              marginTop: 20,
+              fontSize: 20,
+              textAlign: "center",
+              color: SECONDARY_DARK,
+            }}
+          >
+            Nothing to show!
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: "center",
+              color: SECONDARY_DARK,
+            }}
+          >
+            Add to favorite any note!
+          </Text>
+
+          <NoteFeed notes={data.me.favorites} refetch={refetch} />
         </View>
       </>
     );
