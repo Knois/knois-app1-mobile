@@ -11,3 +11,11 @@ export const REGISTRATION_USER = gql`
     signUp(email: $email, username: $username, password: $password)
   }
 `;
+
+export const ADD_NOTE = gql`
+  mutation newNote($anons: String!, $content: String!) {
+    newNote(anons: $anons, content: $content) {
+      id
+    }
+  }
+`;
