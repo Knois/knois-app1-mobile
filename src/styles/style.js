@@ -85,6 +85,13 @@ const style = StyleSheet.create({
     color: SECONDARY_DARK,
   },
   noteScreenTitle: { color: SECONDARY_DARK, fontSize: 30, fontWeight: "bold" },
+  noteToolsItem: {
+    backgroundColor: MAIN_LIGHT,
+    padding: 10,
+    borderRadius: 20,
+    borderColor: SECONDARY_DARK,
+    borderWidth: 2,
+  },
 });
 
 export default style;

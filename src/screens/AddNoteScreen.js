@@ -1,17 +1,19 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect } from "react";
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom";
 import { View, Text, TextInput, Button } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState } from "react/cjs/react.development";
 import { ADD_NOTE } from "../API/Mutation";
-import LoadingIndicator from "../components/LoadingIndicator";
+import { MAIN } from "../styles/constants";
+import style from "../styles/style";
 
 const AddNoteScreen = ({ navigation }) => {
   const [anons, changeAnons] = useState("");
   const [content, changeContent] = useState("");
   const [anonsWarning, setAnonsWarning] = useState("");
   const [contentWarning, setContentWarning] = useState("");
-
-  const [newNote, { data, loading, error }] = useMutation(ADD_NOTE, {
+  const [newNote, { data, error }] = useMutation(ADD_NOTE, {
     variables: {
       anons: anons,
       content: content,
@@ -20,8 +22,10 @@ const AddNoteScreen = ({ navigation }) => {
 
   useEffect(() => {
     setAnonsWarning("");
+  }, [anons]);
+  useEffect(() => {
     setContentWarning("");
-  }, [anons, content]);
+  }, [content]);
 
   const checkInputs = () => {
     anons ? {} : setAnonsWarning("Введите заголовок");
@@ -32,39 +36,39 @@ const AddNoteScreen = ({ navigation }) => {
     newNote();
   };
 
-  if (loading) {
-    return <LoadingIndicator />;
-  }
-
-  if (data) {
-    return (
-      <>
-        <Text>Completed!</Text>
-      </>
-    );
-  }
   return (
-    <View style={{ padding: 30 }}>
-      <Text>Введите заголовок:</Text>
-      <TextInput
-        onChangeText={changeAnons}
-        value={anons}
-        style={{ padding: 10, borderWidth: 1, borderColor: "red" }}
-        placeholder={anonsWarning}
-        placeholderTextColor="red"
-      />
-      <Text>Введите основной текст:</Text>
-      <TextInput
-        onChangeText={changeContent}
-        value={content}
-        style={{ padding: 10, borderWidth: 1, borderColor: "red" }}
-        placeholder={contentWarning}
-        placeholderTextColor="red"
-      />
-      <Button title="Add" onPress={action} />
+    <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
+      <View style={{ padding: 30 }}>
+        <Text style={style.signInFormText}>Введите заголовок:</Text>
+        <TextInput
+          onChangeText={(text) => changeAnons(text)}
+          value={anons}
+          placeholder={anonsWarning}
+          placeholderTextColor="red"
+          style={style.signInFormTextInput}
+          autoCapitalize="sentences"
+          maxLength={200}
+          blurOnSubmit={true}
+        />
+        <Text style={style.signInFormText}>Введите основной текст:</Text>
+        <TextInput
+          onChangeText={(text) => changeContent(text)}
+          value={content}
+          placeholder={contentWarning}
+          placeholderTextColor="red"
+          multiline={true}
+          style={style.signInFormTextInput}
+          autoCapitalize="sentences"
+          maxLength={5000}
+          textAlignVertical="top"
+          numberOfLines={15}
+        />
+        <Button title="Add" onPress={action} style={{ marginBottom: 20 }} />
 
-      {error ? <Text>Ошибка!</Text> : <></>}
-    </View>
+        {error && <Text style={style.signInFormText}>Ошибка!</Text>}
+        {data && <Text style={style.signInFormText}>Complited!</Text>}
+      </View>
+    </KeyboardAwareScrollView>
   );
 };
 

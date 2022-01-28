@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { useQuery } from "@apollo/client";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { GET_NOTE } from "../API/Query";
@@ -9,6 +9,8 @@ import { Feather } from "@expo/vector-icons";
 import { format } from "date-fns";
 import { SECONDARY_DARK } from "../styles/constants";
 import style from "../styles/style";
+import { AntDesign } from "@expo/vector-icons";
+import DeleteButton from "../components/DeleteButton";
 
 const NoteScreen = ({ route, navigation }) => {
   const { id, anons } = route.params;
@@ -57,7 +59,6 @@ const NoteScreen = ({ route, navigation }) => {
         >
           <Feather name="user" size={24} color={SECONDARY_DARK} />
           <Text style={{ color: SECONDARY_DARK }}>
-            {" "}
             {data.note.author.username}
           </Text>
         </View>
@@ -76,10 +77,17 @@ const NoteScreen = ({ route, navigation }) => {
           </Text>
         </View>
       </View>
+      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+        <TouchableOpacity style={style.noteToolsItem}>
+          <AntDesign name="edit" size={40} color={SECONDARY_DARK} />
+        </TouchableOpacity>
+        <TouchableOpacity style={style.noteToolsItem}>
+          <AntDesign name="hearto" size={40} color={SECONDARY_DARK} />
+        </TouchableOpacity>
+        <DeleteButton id={id} />
+      </View>
     </ScrollView>
   );
 };
 
 export default NoteScreen;
-
-/* <AntDesign name="hearto" size={24} color={SECONDARY_DARK} />*/

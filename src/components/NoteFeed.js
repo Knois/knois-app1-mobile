@@ -10,14 +10,16 @@ const NoteFeed = ({ notes, refetch }) => {
   }, []);
 
   return (
-    <FlatList
-      data={notes}
-      keyExtractor={({ id }) => id.toString()}
-      renderItem={({ item }) => <NoteFeedItem item={item} />}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
-    />
+    <>
+      <FlatList
+        data={notes}
+        keyExtractor={({ id }) => id.toString()}
+        renderItem={({ item }) => <NoteFeedItem item={item} />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      />
+    </>
   );
 };
 
