@@ -27,7 +27,7 @@ const SignIn = ({ navigation }) => {
   if (loading) return <LoadingIndicator />;
 
   return (
-    <KeyboardAwareScrollView style={{ backgroundColor: MAIN, padding: 30 }}>
+    <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
       <View style={{ padding: 30 }}>
         <Text style={style.signInTitle}>Log In</Text>
         {error && (

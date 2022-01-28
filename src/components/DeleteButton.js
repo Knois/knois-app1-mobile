@@ -12,21 +12,20 @@ const DeleteButton = ({ id }) => {
   }, []);
 
   const [deleteNote, { data, error }] = useMutation(DELETE_NOTE, {
-    onCompleted: (data) => {
-      console.log(data);
-    },
+    onCompleted: (data) => {},
   });
 
-  const handleSubmit = () => {
-    deleteNote({
-      variables: {
-        id: id,
-      },
-    });
-  };
-
   return (
-    <TouchableOpacity style={style.noteToolsItem} onPress={handleSubmit}>
+    <TouchableOpacity
+      style={style.noteToolsItem}
+      onPress={() => {
+        deleteNote({
+          variables: {
+            id: id,
+          },
+        });
+      }}
+    >
       <AntDesign name="delete" size={40} color={SECONDARY_DARK} />
     </TouchableOpacity>
   );

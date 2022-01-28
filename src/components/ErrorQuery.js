@@ -7,10 +7,7 @@ const ErrorQuery = ({ error }) => {
       <Text style={{ padding: 30, alignSelf: "center" }}>
         Error loading notes:
       </Text>
-      <Text style={{ padding: 30, alignSelf: "center" }}>
-        {error.networkError.name}
-        {error.message}
-      </Text>
+      <Text style={{ padding: 30, alignSelf: "center" }}>{error.message}</Text>
     </View>
   );
 };
