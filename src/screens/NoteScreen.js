@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { useQuery } from "@apollo/client";
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -11,8 +11,10 @@ import { SECONDARY_DARK } from "../styles/constants";
 import style from "../styles/style";
 import { AntDesign } from "@expo/vector-icons";
 import DeleteButton from "../components/DeleteButton";
+import AddToFavoriteButton from "../components/AddToFavoriteButton";
 
 const NoteScreen = ({ route, navigation }) => {
+  const [isDeleted, setDeleted] = useState(false);
   const { id, anons } = route.params;
 
   const toTitle = (anons) => {
@@ -21,7 +23,7 @@ const NoteScreen = ({ route, navigation }) => {
 
   const { loading, error, data, refetch, networkStatus } = useQuery(GET_NOTE, {
     variables: { id },
-    fetchPolicy: "cache-first",
+    fetchPolicy: "network-only",
     notifyOnNetworkStatusChange: true,
   });
 
@@ -32,9 +34,14 @@ const NoteScreen = ({ route, navigation }) => {
     });
   }, []);
 
-  if (loading) return <LoadingIndicator />;
-  if (networkStatus === networkStatus.refetch) return <LoadingIndicator />;
+  if (loading || networkStatus === networkStatus.refetch)
+    return <LoadingIndicator />;
+
   if (error) return <ErrorQuery error={error} />;
+
+  if (isDeleted)
+    return <Text style={{ textAlign: "center", marginTop: 20 }}>Deleted!</Text>;
+
   return (
     <ScrollView style={{ padding: 30 }} endFillColor={2}>
       <Text style={style.noteScreenTitle}>{data.note.anons}</Text>
@@ -48,7 +55,7 @@ const NoteScreen = ({ route, navigation }) => {
           justifyContent: "space-between",
           alignItems: "center",
           alignContent: "center",
-          marginBottom: 70,
+          marginBottom: 40,
         }}
       >
         <View
@@ -77,14 +84,18 @@ const NoteScreen = ({ route, navigation }) => {
           </Text>
         </View>
       </View>
-      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          marginBottom: 70,
+        }}
+      >
         <TouchableOpacity style={style.noteToolsItem}>
           <AntDesign name="edit" size={40} color={SECONDARY_DARK} />
         </TouchableOpacity>
-        <TouchableOpacity style={style.noteToolsItem}>
-          <AntDesign name="hearto" size={40} color={SECONDARY_DARK} />
-        </TouchableOpacity>
-        <DeleteButton id={id} />
+        <AddToFavoriteButton id={id} />
+        <DeleteButton id={id} setDeleted={setDeleted} />
       </View>
     </ScrollView>
   );

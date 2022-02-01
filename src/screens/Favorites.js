@@ -28,6 +28,7 @@ const Favorites = ({ navigation }) => {
   if (networkStatus === networkStatus.refetch) return <LoadingIndicator />;
   if (error) return <ErrorQuery error={error} />;
   if (data.me.favorites.length !== 0) {
+    console.log(data);
     return (
       <>
         <View style={{ flex: 1 }}>

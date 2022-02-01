@@ -35,6 +35,8 @@ const AddNoteScreen = ({ navigation }) => {
     checkInputs();
     newNote();
   };
+  if (error) return <Text style={style.signInFormText}>Ошибка!</Text>;
+  if (data) return <Text style={style.signInFormText}>Complited!</Text>;
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
@@ -64,9 +66,6 @@ const AddNoteScreen = ({ navigation }) => {
           numberOfLines={15}
         />
         <Button title="Add" onPress={action} style={{ marginBottom: 20 }} />
-
-        {error && <Text style={style.signInFormText}>Ошибка!</Text>}
-        {data && <Text style={style.signInFormText}>Complited!</Text>}
       </View>
     </KeyboardAwareScrollView>
   );
