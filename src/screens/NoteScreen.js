@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { useQuery } from "@apollo/client";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { GET_NOTE } from "../API/Query";
@@ -92,7 +92,7 @@ const NoteScreen = ({ route, navigation }) => {
         }}
       >
         <UpdateNoteButton id={id} />
-        <AddToFavoriteButton id={id} />
+        <AddToFavoriteButton id={id} refetch={refetch} />
         <DeleteButton id={id} setDeleted={setDeleted} />
       </View>
     </ScrollView>

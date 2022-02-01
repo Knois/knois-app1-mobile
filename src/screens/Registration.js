@@ -42,7 +42,3 @@ const Registration = ({ navigation }) => {
 };
 
 export default Registration;
-
-/*{error && (
-        <Text style={{ padding: 30, alignSelf: "center" }}>Error sign in!</Text>
-      )}*/

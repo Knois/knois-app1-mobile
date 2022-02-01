@@ -1,20 +1,22 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect } from "react";
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState } from "react/cjs/react.development";
 import { ADD_NOTE } from "../API/Mutation";
 import AddNoteButton from "../components/AddNoteButton";
 import { MAIN } from "../styles/constants";
 import style from "../styles/style";
+import LoadingIndicator from "../components/LoadingIndicator";
+import ErrorQuery from "../components/ErrorQuery";
 
 const AddNoteScreen = ({ navigation }) => {
   const [anons, changeAnons] = useState("");
   const [content, changeContent] = useState("");
   const [anonsWarning, setAnonsWarning] = useState("");
   const [contentWarning, setContentWarning] = useState("");
-  const [newNote, { data, error }] = useMutation(ADD_NOTE, {
+  const [newNote, { loading, data, error }] = useMutation(ADD_NOTE, {
     variables: {
       anons: anons,
       content: content,
@@ -36,9 +38,9 @@ const AddNoteScreen = ({ navigation }) => {
     checkInputs();
     newNote();
   };
-
+  if (error) return <ErrorQuery error={error} />;
   if (data) return <Text style={style.signInFormText}>Complited!</Text>;
-
+  if (loading) return <LoadingIndicator />;
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
       <View style={{ padding: 30 }}>
@@ -67,7 +69,7 @@ const AddNoteScreen = ({ navigation }) => {
           textAlignVertical="top"
           numberOfLines={15}
         />
-        <AddNoteButton action={action} />
+        <AddNoteButton action={action} loading={loading} />
       </View>
     </KeyboardAwareScrollView>
   );

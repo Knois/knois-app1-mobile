@@ -31,9 +31,7 @@ const Favorites = ({ navigation }) => {
     console.log(data);
     return (
       <>
-        <View style={{ flex: 1 }}>
-          <NoteFeed notes={data.me.favorites} refetch={refetch} />
-        </View>
+        <NoteFeed notes={data.me.favorites} refetch={refetch} />
       </>
     );
   } else {
@@ -65,8 +63,6 @@ const Favorites = ({ navigation }) => {
           >
             Add to favorite any note!
           </Text>
-
-          <NoteFeed notes={data.me.favorites} refetch={refetch} />
         </View>
       </>
     );

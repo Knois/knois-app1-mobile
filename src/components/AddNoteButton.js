@@ -1,10 +1,10 @@
 import { TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { MAIN_LIGHT, SECONDARY_DARK } from "../styles/constants";
+import { SECONDARY_DARK } from "../styles/constants";
 import style from "../styles/style";
 
-const AddNoteButton = ({ action }) => {
+const AddNoteButton = ({ action, loading }) => {
   return (
     <TouchableOpacity
       style={style.addNoteButton}

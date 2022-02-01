@@ -1,11 +1,5 @@
 import { StyleSheet } from "react-native";
-import {
-  MAIN,
-  MAIN_LIGHT,
-  SECONDARY,
-  SECONDARY_DARK,
-  WHITE,
-} from "./constants";
+import { MAIN, MAIN_LIGHT, SECONDARY_DARK, WHITE } from "./constants";
 
 const style = StyleSheet.create({
   container: { flex: 1, backgroundColor: MAIN },

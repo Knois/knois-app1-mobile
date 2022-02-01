@@ -7,6 +7,7 @@ import NoteFeed from "../components/NoteFeed";
 import { GET_MY_NOTES } from "../API/Query";
 import ErrorQuery from "../components/ErrorQuery";
 import RefreshButton from "../components/RefreshButton";
+import { SECONDARY_DARK } from "../styles/constants";
 
 const MyNotes = ({ navigation }) => {
   const { loading, error, data, refetch, networkStatus } = useQuery(
@@ -29,9 +30,7 @@ const MyNotes = ({ navigation }) => {
   if (data.me.notes.length !== 0) {
     return (
       <>
-        <View style={{ flex: 1 }}>
-          <NoteFeed notes={data.me.notes} refetch={refetch} />
-        </View>
+        <NoteFeed notes={data.me.notes} refetch={refetch} />
       </>
     );
   } else {
@@ -40,7 +39,25 @@ const MyNotes = ({ navigation }) => {
         <View
           style={{ alignSelf: "center", justifyContent: "center", flex: 1 }}
         >
-          <Text>Nothing to show! Create something...</Text>
+          <Text
+            style={{
+              marginTop: 20,
+              fontSize: 20,
+              textAlign: "center",
+              color: SECONDARY_DARK,
+            }}
+          >
+            Nothing to show!
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              textAlign: "center",
+              color: SECONDARY_DARK,
+            }}
+          >
+            Create something...
+          </Text>
         </View>
       </>
     );
