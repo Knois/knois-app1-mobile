@@ -11,7 +11,7 @@ import { SECONDARY_DARK } from "../styles/constants";
 import style from "../styles/style";
 import DeleteButton from "../components/DeleteButton";
 import AddToFavoriteButton from "../components/AddToFavoriteButton";
-import EditNoteButton from "../components/EditNoteButton";
+import UpdateNoteButton from "../components/UpdateNoteButton";
 
 const NoteScreen = ({ route, navigation }) => {
   const [isDeleted, setDeleted] = useState(false);
@@ -91,7 +91,7 @@ const NoteScreen = ({ route, navigation }) => {
           marginBottom: 70,
         }}
       >
-        <EditNoteButton id={id} />
+        <UpdateNoteButton id={id} />
         <AddToFavoriteButton id={id} />
         <DeleteButton id={id} setDeleted={setDeleted} />
       </View>

@@ -2,12 +2,12 @@ import { TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useMutation } from "@apollo/client";
-import { SET_FAVORITE } from "../API/Mutation";
+import { UPDATE_NOTE } from "../API/Mutation";
 import style from "../styles/style";
 import { SECONDARY_DARK } from "../styles/constants";
 
-const EditNoteButton = ({ id }) => {
-  const [setFavorite, { data, error }] = useMutation(SET_FAVORITE, {
+const UpdateNoteButton = ({ id }) => {
+  const [updateNote, { data, error }] = useMutation(UPDATE_NOTE, {
     onCompleted: (data) => {
       console.log(data);
     },
@@ -17,7 +17,7 @@ const EditNoteButton = ({ id }) => {
     <TouchableOpacity
       style={style.noteToolsItem}
       onPress={() => {
-        setFavorite({
+        updateNote({
           variables: {
             id: id,
           },
@@ -29,4 +29,4 @@ const EditNoteButton = ({ id }) => {
   );
 };
 
-export default EditNoteButton;
+export default UpdateNoteButton;
