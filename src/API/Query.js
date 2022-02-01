@@ -64,10 +64,10 @@ export const GET_MY_FAVORITES = gql`
       id
       username
       favorites {
-        content
         id
         createdAt
         updatedAt
+        anons
         content
         favoriteCount
         author {

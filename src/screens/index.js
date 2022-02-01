@@ -10,6 +10,7 @@ import { View } from "react-native";
 import style from "../styles/style";
 import { theme } from "../styles/theme";
 import AddNoteScreen from "./AddNoteScreen";
+import UpdateNoteScreen from "./UpdateNoteScreen";
 import BottomTabs from "./BottomTabs";
 
 const Auth = createNativeStackNavigator();
@@ -32,6 +33,13 @@ const AppNavigation = () => {
               component={AddNoteScreen}
               options={{
                 title: "Добавление новости",
+              }}
+            />
+            <Main.Screen
+              name="UpdateNoteScreen"
+              component={UpdateNoteScreen}
+              options={{
+                title: "Редактирование новости",
               }}
             />
           </Main.Navigator>

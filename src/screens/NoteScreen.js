@@ -3,7 +3,6 @@ import { View, Text, ScrollView } from "react-native";
 import { useQuery } from "@apollo/client";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { GET_NOTE } from "../API/Query";
-import ErrorQuery from "../components/ErrorQuery";
 import RefreshButton from "../components/RefreshButton";
 import { Feather } from "@expo/vector-icons";
 import { format } from "date-fns";
@@ -37,7 +36,12 @@ const NoteScreen = ({ route, navigation }) => {
   if (loading || networkStatus === networkStatus.refetch)
     return <LoadingIndicator />;
 
-  if (error) return <ErrorQuery error={error} />;
+  if (error)
+    return (
+      <Text style={{ textAlign: "center", marginTop: 20 }}>
+        Error! Note doesn't exist!
+      </Text>
+    );
 
   if (isDeleted)
     return <Text style={{ textAlign: "center", marginTop: 20 }}>Deleted!</Text>;
@@ -91,7 +95,12 @@ const NoteScreen = ({ route, navigation }) => {
           marginBottom: 70,
         }}
       >
-        <UpdateNoteButton id={id} />
+        <UpdateNoteButton
+          id={data.note.id}
+          anons={data.note.anons}
+          content={data.note.content}
+          navigation={navigation}
+        />
         <AddToFavoriteButton id={id} refetch={refetch} />
         <DeleteButton id={id} setDeleted={setDeleted} />
       </View>

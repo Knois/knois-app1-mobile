@@ -3,41 +3,46 @@ import React, { useEffect } from "react";
 import { View, Text, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState } from "react/cjs/react.development";
-import { ADD_NOTE, UPDATE_NOTE } from "../API/Mutation";
+import { UPDATE_NOTE } from "../API/Mutation";
 import AddNoteButton from "../components/AddNoteButton";
 import { MAIN } from "../styles/constants";
 import style from "../styles/style";
 import LoadingIndicator from "../components/LoadingIndicator";
 
-const AddNoteScreen = ({ navigation }) => {
-  const [anons, changeAnons] = useState("");
-  const [content, changeContent] = useState("");
+const UpdateNoteScreen = ({ navigation, route }) => {
+  const { id, anons, content } = route.params;
+  const [anonsUpdated, changeAnonsUpdated] = useState(anons);
+  const [contentUpdated, changeContentUpdated] = useState(content);
   const [anonsWarning, setAnonsWarning] = useState("");
   const [contentWarning, setContentWarning] = useState("");
-  const [newNote, { loading, data, error }] = useMutation(ADD_NOTE, {
+  const [updateNote, { loading, data, error }] = useMutation(UPDATE_NOTE, {
     variables: {
-      anons: anons,
-      content: content,
+      anons: anonsUpdated,
+      content: contentUpdated,
+      id: id,
     },
   });
 
   useEffect(() => {
     setAnonsWarning("");
-  }, [anons]);
+  }, [anonsUpdated]);
   useEffect(() => {
     setContentWarning("");
-  }, [content]);
+  }, [contentUpdated]);
 
   const checkInputs = () => {
-    anons ? {} : setAnonsWarning("Введите заголовок");
-    content ? {} : setContentWarning("Введите заголовок");
+    anonsUpdated ? {} : setAnonsWarning("Введите заголовок");
+    contentUpdated ? {} : setContentWarning("Введите заголовок");
   };
   const action = () => {
     checkInputs();
-    newNote();
+    updateNote();
   };
 
-  if (data) return <Text style={style.signInFormText}>Complited!</Text>;
+  if (data) {
+    console.log(data);
+    return <Text style={style.signInFormText}>Complited!</Text>;
+  }
   if (loading) return <LoadingIndicator />;
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
@@ -45,8 +50,8 @@ const AddNoteScreen = ({ navigation }) => {
         {error && <Text style={style.signInFormText}>Ошибка!</Text>}
         <Text style={style.signInFormText}>Введите заголовок:</Text>
         <TextInput
-          onChangeText={(text) => changeAnons(text)}
-          value={anons}
+          onChangeText={(text) => changeAnonsUpdated(text)}
+          value={anonsUpdated}
           placeholder={anonsWarning}
           placeholderTextColor="red"
           style={style.signInFormTextInput}
@@ -56,8 +61,8 @@ const AddNoteScreen = ({ navigation }) => {
         />
         <Text style={style.signInFormText}>Введите основной текст:</Text>
         <TextInput
-          onChangeText={(text) => changeContent(text)}
-          value={content}
+          onChangeText={(text) => changeContentUpdated(text)}
+          value={contentUpdated}
           placeholder={contentWarning}
           placeholderTextColor="red"
           multiline={true}
@@ -73,4 +78,4 @@ const AddNoteScreen = ({ navigation }) => {
   );
 };
 
-export default AddNoteScreen;
+export default UpdateNoteScreen;

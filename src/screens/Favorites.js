@@ -28,7 +28,6 @@ const Favorites = ({ navigation }) => {
   if (networkStatus === networkStatus.refetch) return <LoadingIndicator />;
   if (error) return <ErrorQuery error={error} />;
   if (data.me.favorites.length !== 0) {
-    console.log(data);
     return (
       <>
         <NoteFeed notes={data.me.favorites} refetch={refetch} />

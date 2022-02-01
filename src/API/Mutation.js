@@ -38,6 +38,8 @@ export const UPDATE_NOTE = gql`
   mutation updateNote($id: ID!, $anons: String!, $content: String!) {
     updateNote(id: $id, anons: $anons, content: $content) {
       id
+      content
+      anons
     }
   }
 `;
