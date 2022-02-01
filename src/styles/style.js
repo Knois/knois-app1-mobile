@@ -92,6 +92,15 @@ const style = StyleSheet.create({
     borderColor: SECONDARY_DARK,
     borderWidth: 2,
   },
+  addNoteButton: {
+    alignSelf: "center",
+    marginTop: 20,
+    backgroundColor: MAIN_LIGHT,
+    padding: 10,
+    borderRadius: 20,
+    borderColor: SECONDARY_DARK,
+    borderWidth: 2,
+  },
 });
 
 export default style;

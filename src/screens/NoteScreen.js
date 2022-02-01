@@ -9,9 +9,9 @@ import { Feather } from "@expo/vector-icons";
 import { format } from "date-fns";
 import { SECONDARY_DARK } from "../styles/constants";
 import style from "../styles/style";
-import { AntDesign } from "@expo/vector-icons";
 import DeleteButton from "../components/DeleteButton";
 import AddToFavoriteButton from "../components/AddToFavoriteButton";
+import EditNoteButton from "../components/EditNoteButton";
 
 const NoteScreen = ({ route, navigation }) => {
   const [isDeleted, setDeleted] = useState(false);
@@ -91,9 +91,7 @@ const NoteScreen = ({ route, navigation }) => {
           marginBottom: 70,
         }}
       >
-        <TouchableOpacity style={style.noteToolsItem}>
-          <AntDesign name="edit" size={40} color={SECONDARY_DARK} />
-        </TouchableOpacity>
+        <EditNoteButton id={id} />
         <AddToFavoriteButton id={id} />
         <DeleteButton id={id} setDeleted={setDeleted} />
       </View>

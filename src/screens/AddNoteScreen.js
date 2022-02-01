@@ -5,6 +5,7 @@ import { View, Text, TextInput, Button } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState } from "react/cjs/react.development";
 import { ADD_NOTE } from "../API/Mutation";
+import AddNoteButton from "../components/AddNoteButton";
 import { MAIN } from "../styles/constants";
 import style from "../styles/style";
 
@@ -35,12 +36,13 @@ const AddNoteScreen = ({ navigation }) => {
     checkInputs();
     newNote();
   };
-  if (error) return <Text style={style.signInFormText}>Ошибка!</Text>;
+
   if (data) return <Text style={style.signInFormText}>Complited!</Text>;
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
       <View style={{ padding: 30 }}>
+        {error && <Text style={style.signInFormText}>Ошибка!</Text>}
         <Text style={style.signInFormText}>Введите заголовок:</Text>
         <TextInput
           onChangeText={(text) => changeAnons(text)}
@@ -65,7 +67,7 @@ const AddNoteScreen = ({ navigation }) => {
           textAlignVertical="top"
           numberOfLines={15}
         />
-        <Button title="Add" onPress={action} style={{ marginBottom: 20 }} />
+        <AddNoteButton action={action} />
       </View>
     </KeyboardAwareScrollView>
   );

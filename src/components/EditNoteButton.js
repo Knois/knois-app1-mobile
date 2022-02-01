@@ -2,14 +2,14 @@ import { TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { useMutation } from "@apollo/client";
-import { UPDATE_NOTE } from "../API/Mutation";
+import { SET_FAVORITE } from "../API/Mutation";
 import style from "../styles/style";
 import { SECONDARY_DARK } from "../styles/constants";
 
-const DeleteButton = ({ id, setDeleted }) => {
-  const [updateNote, { data, error }] = useMutation(UPDATE_NOTE, {
+const EditNoteButton = ({ id }) => {
+  const [setFavorite, { data, error }] = useMutation(SET_FAVORITE, {
     onCompleted: (data) => {
-      setDeleted(true);
+      console.log(data);
     },
   });
 
@@ -17,16 +17,16 @@ const DeleteButton = ({ id, setDeleted }) => {
     <TouchableOpacity
       style={style.noteToolsItem}
       onPress={() => {
-        updateNote({
+        setFavorite({
           variables: {
             id: id,
           },
         });
       }}
     >
-      <AntDesign name="delete" size={40} color={SECONDARY_DARK} />
+      <AntDesign name="edit" size={40} color={SECONDARY_DARK} />
     </TouchableOpacity>
   );
 };
 
-export default DeleteButton;
+export default EditNoteButton;
