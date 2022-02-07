@@ -3,11 +3,12 @@ import React, { useEffect } from "react";
 import { View, Text, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState } from "react/cjs/react.development";
-import { ADD_NOTE, UPDATE_NOTE } from "../API/Mutation";
+import { ADD_NOTE } from "../API/Mutation";
 import AddNoteButton from "../components/AddNoteButton";
 import { MAIN } from "../styles/constants";
 import style from "../styles/style";
 import LoadingIndicator from "../components/LoadingIndicator";
+import SystemMessage from "../components/SystemMessage";
 
 const AddNoteScreen = ({ navigation }) => {
   const [anons, changeAnons] = useState("");
@@ -37,7 +38,7 @@ const AddNoteScreen = ({ navigation }) => {
     newNote();
   };
 
-  if (data) return <Text style={style.signInFormText}>Complited!</Text>;
+  if (data) return <SystemMessage>Complited!</SystemMessage>;
   if (loading) return <LoadingIndicator />;
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: MAIN }}>
@@ -67,6 +68,7 @@ const AddNoteScreen = ({ navigation }) => {
           textAlignVertical="top"
           numberOfLines={15}
         />
+
         <AddNoteButton action={action} loading={loading} />
       </View>
     </KeyboardAwareScrollView>

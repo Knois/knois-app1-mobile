@@ -87,6 +87,9 @@ const style = StyleSheet.create({
     borderWidth: 2,
   },
   addNoteButton: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     alignSelf: "center",
     marginTop: 20,
     backgroundColor: MAIN_LIGHT,

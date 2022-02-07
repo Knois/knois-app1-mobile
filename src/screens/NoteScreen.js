@@ -38,13 +38,35 @@ const NoteScreen = ({ route, navigation }) => {
 
   if (error)
     return (
-      <Text style={{ textAlign: "center", marginTop: 20 }}>
-        Error! Note doesn't exist!
-      </Text>
+      <View style={{ alignSelf: "center", justifyContent: "center", flex: 1 }}>
+        <Text
+          style={{
+            marginTop: 20,
+            fontSize: 20,
+            textAlign: "center",
+            color: SECONDARY_DARK,
+          }}
+        >
+          Error! Note is deleted or doesn't exist!
+        </Text>
+      </View>
     );
 
   if (isDeleted)
-    return <Text style={{ textAlign: "center", marginTop: 20 }}>Deleted!</Text>;
+    return (
+      <View style={{ alignSelf: "center", justifyContent: "center", flex: 1 }}>
+        <Text
+          style={{
+            marginTop: 20,
+            fontSize: 20,
+            textAlign: "center",
+            color: SECONDARY_DARK,
+          }}
+        >
+          Deleted!
+        </Text>
+      </View>
+    );
 
   return (
     <ScrollView style={{ padding: 30 }} endFillColor={2}>

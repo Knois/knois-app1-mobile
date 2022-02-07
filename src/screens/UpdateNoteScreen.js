@@ -1,13 +1,13 @@
 import { useMutation } from "@apollo/client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TextInput } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useState } from "react/cjs/react.development";
 import { UPDATE_NOTE } from "../API/Mutation";
-import AddNoteButton from "../components/AddNoteButton";
+import AcceptButton from "../components/AcceptButton";
 import { MAIN } from "../styles/constants";
 import style from "../styles/style";
 import LoadingIndicator from "../components/LoadingIndicator";
+import SystemMessage from "../components/SystemMessage";
 
 const UpdateNoteScreen = ({ navigation, route }) => {
   const { id, anons, content } = route.params;
@@ -38,10 +38,12 @@ const UpdateNoteScreen = ({ navigation, route }) => {
     checkInputs();
     updateNote();
   };
+  const goBack = () => {
+    navigation.goBack();
+  };
 
   if (data) {
-    console.log(data);
-    return <Text style={style.signInFormText}>Complited!</Text>;
+    return <SystemMessage>Complited!</SystemMessage>;
   }
   if (loading) return <LoadingIndicator />;
   return (
@@ -72,7 +74,8 @@ const UpdateNoteScreen = ({ navigation, route }) => {
           textAlignVertical="top"
           numberOfLines={15}
         />
-        <AddNoteButton action={action} loading={loading} />
+
+        <AcceptButton action={action} loading={loading} />
       </View>
     </KeyboardAwareScrollView>
   );

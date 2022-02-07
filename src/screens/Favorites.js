@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
 import { useQuery } from "@apollo/client";
 
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -7,7 +6,7 @@ import ErrorQuery from "../components/ErrorQuery";
 import NoteFeed from "../components/NoteFeed";
 import { GET_MY_FAVORITES } from "../API/Query";
 import RefreshButton from "../components/RefreshButton";
-import { SECONDARY_DARK } from "../styles/constants";
+import SystemMessage from "../components/SystemMessage";
 
 const Favorites = ({ navigation }) => {
   const { loading, error, data, refetch, networkStatus } = useQuery(
@@ -36,33 +35,9 @@ const Favorites = ({ navigation }) => {
   } else {
     return (
       <>
-        <View
-          style={{
-            alignSelf: "center",
-            justifyContent: "center",
-            flex: 1,
-          }}
-        >
-          <Text
-            style={{
-              marginTop: 20,
-              fontSize: 20,
-              textAlign: "center",
-              color: SECONDARY_DARK,
-            }}
-          >
-            Nothing to show!
-          </Text>
-          <Text
-            style={{
-              fontSize: 20,
-              textAlign: "center",
-              color: SECONDARY_DARK,
-            }}
-          >
-            Add to favorite any note!
-          </Text>
-        </View>
+        <SystemMessage>
+          Nothing to show!{"\n"}Add something to favorites!
+        </SystemMessage>
       </>
     );
   }

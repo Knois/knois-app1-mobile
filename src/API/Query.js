@@ -79,3 +79,11 @@ export const GET_MY_FAVORITES = gql`
     }
   }
 `;
+
+export const GET_MY_USERNAME = gql`
+  query me {
+    me {
+      username
+    }
+  }
+`;

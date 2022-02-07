@@ -4,7 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { SECONDARY_DARK } from "../styles/constants";
 import style from "../styles/style";
 
-const AddNoteButton = ({ action, loading }) => {
+const AcceptButton = ({ action, loading }) => {
   return (
     <TouchableOpacity
       style={style.addNoteButton}
@@ -12,7 +12,7 @@ const AddNoteButton = ({ action, loading }) => {
         action();
       }}
     >
-      <AntDesign name="plus" size={40} color={SECONDARY_DARK} />
+      <AntDesign name="check" size={40} color={SECONDARY_DARK} />
       <Text
         style={{
           textAlign: "center",
@@ -20,10 +20,10 @@ const AddNoteButton = ({ action, loading }) => {
           fontWeight: "bold",
         }}
       >
-        Добавить
+        Принять
       </Text>
     </TouchableOpacity>
   );
 };
 
-export default AddNoteButton;
+export default AcceptButton;
